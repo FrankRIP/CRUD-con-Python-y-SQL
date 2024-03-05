@@ -20,9 +20,53 @@ def pedirDatosCurso():
     creditosCorrectos = False
     creditos = input("Ingrese creditos")
     if creditos.isnumeric():
-        creditosCorrectos = True
-        creditos = int(creditos)
+        if(int(creditos) > 0):
+            creditosCorrectos = True
+            creditos = int(creditos)
+        else:
+            print ("Los creditos debe ser mayor a 0.")
     else:
         print ("Creditos Incorrectos: Debe ingresar un numero")
     curso = (codigo, nombre, creditos)
     return curso
+
+
+
+def pedirDatosActualizacion(cursos):
+    listarCursos(cursos)
+    existeCodigo = False
+    codigoEditar = input ("Ingrese el codigo del curso a editar: ")
+    for cur in cursos:
+        if cur[0] == codigoEditar:
+            existeCodigo = True
+            break
+    if existeCodigo:
+        nombre = input("Ingrese Nombre: ")
+        
+        creditosCorrectos = False
+        while (not creditosCorrectos):
+            creditos = input("Ingrese creditos a modificar: ")
+            if creditos.isnumeric():
+                if(int(creditos) > 0):
+                    creditosCorrectos = True
+                    creditos = int(creditos)
+                else:
+                    print ("Los creditos debe ser mayor a 0.")
+            else:
+                print ("Creditos Incorrectos: Debe ingresar un numero")
+        curso = (codigoEditar, nombre, creditos)
+    else:
+        curso = None
+    return curso
+    
+def pedirDatosEliminacion(cursos):
+    listarCursos(cursos)
+    existeCodigo = False
+    codigoEliminar = input("Ingrese el codigo del curso a eliminar")
+    for cur in cursos:
+        if cur[0] == codigoEliminar:
+            existeCodigo = True
+            break
+    if not existeCodigo:
+        codigoEliminar = ""
+    return codigoEliminar

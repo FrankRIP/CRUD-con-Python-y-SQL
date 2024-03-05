@@ -44,9 +44,29 @@ def ejecutarOpcion(opcion):
         except:
             print ("Ocurso un error(Registro)")
     elif opcion == 3:
-        print("Actualizacion")
+        try:
+            cursos = dao.listarCursos()
+            if len (cursos) > 0:
+                curso = funciones.pedirDatosActualizacion(cursos)
+                if curso:
+                    dao.actualizarCurso
+                else:
+                    print("Codigo de curso a actualizar no encontrado \n")
+            else:
+                print("No se econtraron cursos")
+        except:  
+            print ("Ocurrio un error(Actualizacion)")  
     elif opcion == 4:
-        print ("Eliminacion")
+        try:
+            cursos = dao.conexion()
+            if len(cursos) > 0:
+                codigoEliminar = funciones.pedirDatosEliminacion(cursos)
+                if not(codigoEliminar == ""):
+                    dao.eliminarCurso(codigoEliminar)
+                else:
+                    print("Codigo de curso no encontrado.. \n")
+        except:
+            print ("Ocurso un error(Eliminar)")
     else:print("Opcion no valida...")
         
 
